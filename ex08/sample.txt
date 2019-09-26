@@ -1,0 +1,6 @@
+abcdefghij
+1234567890
+ab cd ef gh ij kl mn
+12 34 56 78 90
+ab:cd:ef:gh:hj:kl:mn
+12:34:56:78:90
