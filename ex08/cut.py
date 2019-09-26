@@ -60,7 +60,7 @@ def deli_worker(option1, option2, data):
     logging.debug("deli_worker")
     logging.debug("option1 : %s" % option1)
     logging.debug("option2 : %s" % option2)
-    opt = option2.split('option2')
+    opt = option2.split('-')
     start_pos, end_pos = 0, 0
     if len(opt) == 1:
         start_pos , end_pos = int(opt[0]), int(opt[0])
