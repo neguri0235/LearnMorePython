@@ -57,6 +57,26 @@ def char_worker(option, data):
 
 def deli_worker(option1, option2, data):
     """ work for delimiters """
+    logging.debug("deli_worker")
+    logging.debug("option1 : %s" % option1)
+    logging.debug("option2 : %s" % option2)
+    opt = option2.split('option2')
+    start_pos, end_pos = 0, 0
+    if len(opt) == 1:
+        start_pos , end_pos = int(opt[0]), int(opt[0])
+    elif len(opt) == 2:
+        start_pos, end_pos = int(opt[0]), int(opt[1])
+    else:
+        print("wrong input range")
+        sys.exit(0)
+
+    logging.debug("start_pos %s " % start_pos)
+    logging.debug("end_pos %s " % end_pos)
+    for line in data:
+        split_data = line.split('option1')
+        for idx in range(start_pos-1, end_pos):
+            print(split_data[idx],end='')
+        print()
     pass
 
 def stdout(data):
