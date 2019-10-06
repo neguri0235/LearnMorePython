@@ -35,17 +35,35 @@ def print_result(result):
     for e in result:
         print(e)
 
+def execute(exec_list, find_list):
+    if exec_list[1] != "{}" or exec_list[2] != "\;":
+        logging.debug("exec option size is wrong [%d]" % len(args.exec))
+        return 
+
+    prog = exec_list[0]
+
+    for e in exec_list:
+        logging.debug("exec option exist & len=[%s]" % e)
+        pass
+
+    for file in find_list:
+        subprocess.call([prog,file])
+
 def run(args):
 #    all_file_list = traverse_dir(args.path)
 #    match_file_list = matcher(args.name, all_file_list)
     find_result = using_glob(args.path, args.name)
     print_result(find_result)
-    
+
+    if args.exec:
+        logging.debug("exec option exist & len=[%d]" % len(args.exec))
+        execute(args.exec, find_result)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="base directory")
     parser.add_argument("-name", help="file name or directory name")
-    parser.add_argument("-exec", help="execute")    
+    parser.add_argument("-exec", nargs = 3, help="execute")    
     args = parser.parse_args()
     logging.debug("-------argument-------")
     logging.debug("path: %s" % args.path)

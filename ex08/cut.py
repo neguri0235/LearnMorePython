@@ -4,10 +4,9 @@ cut.py
 $ python cut.py sample.txt
 $ python cut.py sample.txt -c 3
 $ python cut.py sample.txt -c 1-5
-$ python cut.py sample.txt -d ' ' f 3
-$ python cut.py sample.txt -d ' ' f 3-5
-$ python cut.py sample.txt -d ':' f 3-5
-
+$ python cut.py sample.txt -d " " -f 3
+$ python cut.py sample.txt -d " " -f 3-5
+$ python cut.py sample.txt -d ":" -f 3-5
 """
 
 import argparse
@@ -17,7 +16,7 @@ import os
 import sys
 
 logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s = %(levelname)s - %(message)s')
-#logging.disable(logging.DEBUG)
+logging.disable(logging.DEBUG)
 
 
 def file_read(name):
@@ -73,7 +72,10 @@ def deli_worker(option1, option2, data):
     logging.debug("start_pos %s " % start_pos)
     logging.debug("end_pos %s " % end_pos)
     for line in data:
-        split_data = line.split('option1')
+        split_data = line.split(option1)
+        if len(split_data) < end_pos:
+            continue
+        #logging.debug("length of split data %s" % len(split_data))
         for idx in range(start_pos-1, end_pos):
             print(split_data[idx],end='')
         print()
@@ -95,7 +97,6 @@ def worker(args):
         deli_worker(args.d, args.f, data)
     else:
         stdout(data)
-    
 
 if __name__== "__main__":
     """entry point of cut module"""
