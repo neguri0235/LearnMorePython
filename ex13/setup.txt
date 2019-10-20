@@ -1,0 +1,11 @@
+conda create --name lmphw python=3.7
+
+conda activate lmphw
+
+conda deactivate 
+
+conda env list
+
+
+pip install -U pytest
+pip install -U pytest-watch
